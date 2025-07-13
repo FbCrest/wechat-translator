@@ -3,7 +3,7 @@
 // Lưu ý: Nếu chạy trên trình duyệt, có thể bị CORS. Nếu vậy, cần proxy hoặc chạy server-side.
 
 // Đổi thành domain của bạn sau khi deploy lên Vercel!
-const PROXY_BASE = 'https://my-wechat-translator.vercel.app/api/wechat-proxy';
+const PROXY_BASE = '/api/wechat-proxy';
 
 export async function fetchWeChatArticle(url: string): Promise<{ title: string, content: string }> {
   const response = await fetch(`${PROXY_BASE}?url=${encodeURIComponent(url)}`);

@@ -1,0 +1,99 @@
+/* App.css */
+
+.App {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+  font-family: sans-serif;
+  text-align: center;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+}
+
+.App h1 {
+  color: #333;
+}
+
+.App p {
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.input-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+.input-form input {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.input-form button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.input-form button:hover {
+  background-color: #0056b3;
+}
+
+.loading,
+.error {
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+.loading {
+  color: #007bff;
+}
+
+.error {
+  color: #dc3545;
+}
+
+.translation-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  text-align: left;
+  margin-top: 30px;
+}
+
+.translation-box {
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.translation-box h2 {
+  margin-top: 0;
+  color: #333;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 10px;
+}
+
+.translation-box h3 {
+  color: #555;
+  margin-top: 20px;
+}
+
+.translation-box p {
+  white-space: pre-wrap; /* Giữ lại các khoảng trắng và xuống dòng */
+  line-height: 1.6;
+  color: #444;
+}
