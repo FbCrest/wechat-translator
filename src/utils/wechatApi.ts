@@ -6,7 +6,8 @@
 const PROXY_BASE = '/api/wechat-proxy';
 
 export async function fetchWeChatArticle(url: string): Promise<{ title: string, content: string }> {
-  const response = await fetch(`${PROXY_BASE}?url=${encodeURIComponent(url)}`);
+  const params = new URLSearchParams({ url });
+  const response = await fetch(`${PROXY_BASE}?${params.toString()}`);
   if (!response.ok) {
     throw new Error(`Failed to fetch WeChat article: ${response.status}`);
   }
