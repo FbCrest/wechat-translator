@@ -5,7 +5,7 @@
 // Đổi thành domain của bạn sau khi deploy lên Vercel!
 const PROXY_BASE = '/api/wechat-proxy';
 
-export async function fetchWeChatArticle(url: string): Promise<{ title: string, content: string }> {
+export async function fetchWeChatArticle(url: string): Promise<{ htmlContent: string }> {
   const params = new URLSearchParams({ url });
   const response = await fetch(`${PROXY_BASE}?${params.toString()}`);
   if (!response.ok) {
@@ -13,23 +13,5 @@ export async function fetchWeChatArticle(url: string): Promise<{ title: string, 
   }
   const html = await response.text();
 
-  // Parse HTML bằng DOMParser
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(html, 'text/html');
-
-  // Lấy tiêu đề
-  let title = doc.querySelector('.rich_media_title')?.textContent?.trim() || '';
-  if (!title) {
-    // Thử selector khác
-    title = doc.title || '';
-  }
-
-  // Lấy nội dung chính
-  let content = doc.querySelector('.rich_media_content, .js_content')?.textContent?.trim() || '';
-  if (!content) {
-    // Thử selector khác
-    content = doc.body?.textContent?.trim() || '';
-  }
-
-  return { title, content };
+  return { htmlContent: html };
 }

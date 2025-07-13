@@ -2,36 +2,22 @@ import { useState, useCallback } from 'react';
 import { fetchWeChatArticle } from '../utils/wechatApi';
 import { translateService } from '../services/translate';
 
-export interface WeChatArticleData {
-  url: string;
-  title: string;
-  content: string;
-  translatedTitle: string;
-  translatedContent: string;
+export interface WeChatHtmlData {
+  htmlContent: string;
 }
 
-export function useWeChatData() {
-  const [data, setData] = useState<WeChatArticleData | null>(null);
+export function useWeChatHtmlData() {
+  const [data, setData] = useState<WeChatHtmlData | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchAndTranslate = useCallback(async (url: string) => {
+  const fetchAndDisplayHtml = useCallback(async (url: string) => {
     setLoading(true);
     setError(null);
     setData(null);
     try {
-      const article = await fetchWeChatArticle(url);
-      const [translatedTitle, translatedContent] = await Promise.all([
-        translateService.translate(article.title, { from: 'zh', to: 'vi' }),
-        translateService.translate(article.content, { from: 'zh', to: 'vi' })
-      ]);
-      setData({
-        url,
-        title: article.title,
-        content: article.content,
-        translatedTitle,
-        translatedContent,
-      });
+      const { htmlContent } = await fetchWeChatArticle(url);
+      setData({ htmlContent });
     } catch (err: any) {
       setError(err.message || 'Lỗi không xác định');
     } finally {
@@ -43,6 +29,6 @@ export function useWeChatData() {
     data,
     loading,
     error,
-    fetchAndTranslate,
+    fetchAndDisplayHtml,
   };
 }

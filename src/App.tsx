@@ -1,16 +1,16 @@
 import React from 'react';
-import { useWeChatData } from './hooks/useWeChatData';
+import { useWeChatHtmlData } from './hooks/useWeChatData';
 import './index.css';
 import './App.css';
 
 function App() {
-  const { data, loading, error, fetchAndTranslate } = useWeChatData();
+  const { data, loading, error, fetchAndDisplayHtml } = useWeChatHtmlData();
   const [url, setUrl] = React.useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (url.trim()) {
-      fetchAndTranslate(url.trim());
+    if (url) {
+      fetchAndDisplayHtml(url);
     }
   };
 
@@ -45,17 +45,9 @@ function App() {
           )}
 
           {data && (
-            <div className="translation-container">
-              <div className="translation-box">
-                <h2>Bản gốc</h2>
-                <h3>{data.title}</h3>
-                <p>{data.content}</p>
-              </div>
-              <div className="translation-box">
-                <h2>Bản dịch tiếng Việt</h2>
-                <h3>{data.translatedTitle}</h3>
-                <p>{data.translatedContent}</p>
-              </div>
+            <div className="translation-result">
+              <h2>HTML Content from Proxy</h2>
+              <pre className="html-raw-content">{data.htmlContent}</pre>
             </div>
           )}
           <footer style={{ fontSize: 12, marginTop: 40, color: '#888' }}>
