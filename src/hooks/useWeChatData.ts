@@ -1,6 +1,5 @@
 import { useState, useCallback } from 'react';
 import { fetchWeChatArticle } from '../utils/wechatApi';
-import { translateService } from '../services/translate';
 
 export interface WeChatHtmlData {
   htmlContent: string;
